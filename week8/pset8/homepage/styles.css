@@ -1,0 +1,365 @@
+body {
+    background-color: rgb(125,155,191);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color:#12223F;
+}
+
+b{
+    color: #FFCB68;
+
+    text-shadow: -1px -1px 0 #12223F, 1px -1px 0 #12223F, -1px 1px 0 #12223F, 1px 1px 0 #12223F;
+}
+
+/* NAV BAR */
+.nav.nav-tabs .nav-item .nav-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #12223F;
+    font-size: 150%;
+}
+
+.nav.nav-tabs:hover .nav-item .nav-link:not(.active):not(:hover){
+    color: #12223F;
+    opacity: 0.5;
+    filter: blur(1px);
+}
+.nav.nav-tabs:hover .nav-item .nav-link:not(:hover){
+    color:#FFCB68;
+    filter: blur(1px);
+}
+
+.nav-link:not(.active):hover {
+    border-color: #FFCB68;
+    border-bottom-color: rgb(125,155,191);
+}
+
+.nav.nav-tabs:hover .nav-item .nav-link:hover{
+    color: #FFCB68;
+}
+
+.nav.nav-tabs .nav-link.active {
+    border-color:#FFCB68;
+    border-bottom-color: #12223F;
+    color: #FFCB68;
+    background-color: #12223F;
+}
+
+.nav-tabs {
+    border-color: #FFCB68;
+}
+
+
+
+/* HOME DIVISION */
+#home-div{
+    display: flex;
+    /* height: 100vh;  */
+    padding: 0px 20px;
+}
+
+#first-half, #second-half{
+    width: 50%;
+}
+
+/* HEADER TEXT */
+
+.text{
+    line-height: 55px;
+    margin-top: 55px;
+    margin-right: 5%;
+    color:#12223F;
+    font-size: 50px;
+}
+
+/* IMAGES */
+.me{
+    margin-top: -11%;
+    width: 576px;
+    height: auto;
+}
+
+.bg-img{
+    background-image: url(pictures/background_me.png);
+    background-repeat: no-repeat;
+    background-size: 569px;
+    margin-top: 5%;
+}
+
+.objective{
+    font-size : 30px;
+    color:#12223F;
+    margin-top: 50px;
+}
+
+/* CV BUTTON */
+#cv{
+    margin-top: 30px;
+    padding: 5px 10px;
+    border-radius: 13px;
+    border-color: #12223F;
+    background-color:#FFCB68;
+    color: #12223F;
+    font-size: 20px;
+    font-weight: 560;
+
+}
+
+#cv:hover{
+    border-color: #FFCB68;
+    background-color:#12223F;
+    color:#FFCB68;
+}
+
+#center-btn{
+    display: flex;
+    justify-content: center;
+}
+
+/* COPYWRITES */
+#copywrite{
+    color:#12223F;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+
+}
+
+/* ABOUT DIVISION */
+#about-div{
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.accordion, .accordion-item, .accordion-button{
+    border-color: #FFCB68;
+}
+
+.accordion .accordion-button{
+    color:#FFCB68;
+    background-color: #12223F;
+}
+.accordion:hover .accordion-item:not(:hover) .accordion-button:not(:hover) {
+    filter: blur(1px);
+}
+
+.accordion-body{
+    color:#12223F;
+    background-color:#FFCB68;
+    font-size: 19px;
+}
+
+.accordion-button{
+    font-size: 30px;
+}
+
+/* SKILLS DIVISION */
+#skills-div{
+    padding: 20px;
+    display: flex;
+}
+
+table, th, td{
+    border: 3px solid #12223F;
+    color:#12223F;
+    background-color:#FFCB68;
+    padding: 15px;
+    font-weight: 400;
+    font-size: 21px;
+}
+
+
+/*CONTACT DIVISION*/
+#contact-div{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#message-form{
+    border: 2px solid #12223F;
+    background-color:#FFCB68;
+}
+
+#form-div{
+    padding: 20px 60px;
+}
+
+label{
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.input-field{
+    padding: 10px;
+    display: flex;
+    font-size: 20px;
+    border-radius: 5px;
+    color: #FFCB68;
+    background-color:#12223F;
+}
+
+#button-div{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#message-button{
+    background-color: #FFCB68;
+    color:#12223F;
+    border: 2px solid #12223F;
+    border-bottom: 5px solid #12223F;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+#message-button:hover {
+   transform: translateY(-0.1em);
+   border-bottom: 7px solid #12223F;
+}
+
+/*SOCIAL MEDIA ICONS*/
+#social-media{
+    display: flex;
+    justify-content: center;
+}
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #12223F;
+}
+
+.fa:hover{
+    color: #FFCB68;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 1192px){
+    .me{
+        width: 560px;;
+    }
+    .bg-img{
+        background-size:  553px;
+    }
+    .text{
+        font-size: 40px;
+        line-height: normal;
+    }
+    .objective{
+        font-size: 25px;
+    }
+    .accordion-body{
+        font-size: 15px;
+    }
+    .accordion-button{
+        font-size: 20px;
+    }
+    th, td{
+        font-size: 19px;
+    }
+    label, .input-field, #message-button{
+        font-size: 18px;
+    }
+    .fa {
+        font-size: 28px;
+    }
+    #copywrite{
+        margin-top: 50px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1122px){
+    .bg-img{
+        margin-top: 130px;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+    }
+    #first-half, #second-half{
+        width: 100%;
+
+    }
+    #home-div{
+        display: block;
+    }
+}
+
+@media (max-width: 606px){
+    .text{
+        font-size: 25px;
+    }
+    .objective{
+        font-size: 20px;
+    }
+    .accordion-body{
+        font-size: 13px;
+    }
+    .accordion-button{
+        font-size: 18px;
+    }
+    th, td{
+        font-size: 15px;
+    }
+    label, .input-field, #message-button{
+        font-size: 16px;
+    }
+    .fa {
+        font-size: 26px;
+    }
+    #copywrite{
+        font-size: 14px;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 550px) {
+    .nav {
+      font-size: 69%;
+    }
+    .me{
+        width: 300px;
+        height: auto;
+    }
+    .bg-img{
+        margin-top: 50px;
+        background-size: 305px;
+    }
+    .text{
+        font-size: 20px;
+        margin-top: 30px;
+    }
+    .objective, #cv{
+        font-size: 14px;
+        margin-top: 20px;
+    }
+    .accordion-body{
+        font-size: 10px;
+    }
+    .accordion-button{
+        font-size: 15px;
+    }
+    th, td{
+        font-size: 12px;
+        padding: 10px;
+    }
+    label, .input-field, #message-button{
+        font-size: 13px;
+    }
+    .fa {
+        font-size: 24px;
+    }
+    #copywrite{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    .nav {
+      font-size: 48%;
+    }
+}
