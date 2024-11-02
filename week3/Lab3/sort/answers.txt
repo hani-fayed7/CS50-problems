@@ -1,0 +1,35 @@
+sort1 uses: Bubble sort
+
+How do you know?: as we can see in the table below, for sort1, the values are all different so we don't have similar upper or lower bounds. For the worst case, wich is here random50000 this algorithms takes 8.3 seconds which is really slow, therefore the time complexity for this algortihm in the worst-case is O(n^2). For the best-case scenario we have sorted50000, this algorithm takes 1.13 seconds wich slow but faster than the worst-case scenario therefore the time complexity for the bes-case scenario is Ω(n). So to conclude, that's the bubble sort algorithm.
+
+sort2 uses: Merge sort
+
+How do you know?: The values in the table for the different files is almost the same in this sorting algorithm so in this case, the upper and lower bounds are the same so we have a theta. If we observe all the values we conclude that the worst file is random50000, so since the real time that sort2 takes in that file is lower than the others we conclude that this sorting algorithm is the fastest, with Θ(n log n) and that's for merge sort algorithm.
+
+sort3 uses: Selection sort
+
+How do you know?: in sort3, the values of the real time are different but if you look closely you'll realize that random5000, reveresed5000, sorted5000 are almost the same, same goes for files with 10000 and 50000, so we have a theta. Also, while observing the worst file (random50000) we realize that this algorithms is really slow. so we end up with Θ(n^2), and this is for selection sort algorithm.
+
+
+
+//table that stores the real time that the algorithm takes to sort the file
+
+                  |  5000  | 10000  | 50000
+----------------------------------------------
+       | random   | 0.083s | 0.317s | 8.344s
+       |--------------------------------------
+sort1  | reversed | 0.101s | 0.273s | 6.142s
+       |--------------------------------------
+       | sorted   | 0.059s | 0.084s | 1.137s
+----------------------------------------------
+       | random   | 0.063s | 0.095s | 0.760s
+       |--------------------------------------
+sort2  | reversed | 0.030s | 0.070s | 1.241s
+       |--------------------------------------
+       | sorted   | 0.063s | 0.099s | 0.987s
+----------------------------------------------
+       | random   | 0.062s | 0.196s | 5.684s
+       |--------------------------------------
+sort3  | reversed | 0.080s | 0.163s | 4.889s
+       |--------------------------------------
+       | sorted   | 0.051s | 0.219s | 3.724s
