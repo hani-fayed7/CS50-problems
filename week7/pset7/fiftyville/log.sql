@@ -1,0 +1,196 @@
+-- Keep a log of any SQL queries you execute as you solve the mystery.
+
+--to see what happened on that day -- I noticed that there is 3 interviews with 3 witnesses and on their interview they mentions the bakery:
+--SELECT description FROM crime_scene_reports WHERE month = 7 AND day = 28;
+
+--to see what the witnesses says about the theft -- i need to check the footage from the parking lot, te atm on legget street, and phone calls:
+--SELECT transcript FROM interviews WHERE transcript LIKE '%bakery%' AND day = 28 AND month = 7;
+
+-- to see the cars plates that left the bakery parking ten minutes between 10 minutes of the theft:
+--SELECT * FROM bakery_security_logs WHERE hour = 10 AND minute BETWEEN 15 AND 25 AND day = 28 AND month = 7 AND year = 2021 AND activity = 'exit';
+
+-- to know who withdraw from that bank:
+--SELECT * FROM atm_transactions WHERE year = 2021 AND month = 7 AND day = 28 AND atm_location = 'Leggett Street' and transaction_type = 'withdraw';
+
+-- to see the calls history on that day that are less than a minute:
+--SELECT * FROM phone_calls WHERE duration < 60 AND month = 7 AND day = 28;
+
+--to see the name of the person who has license_plate that left from bakery moments after the theft
+--and his phone number is among the calls history on that day that are less than a minute
+--and his id is in the bank account that he's withdrawing from the atm some money at Legget Street
+--and his passport number is in the first flight that happened the day after the theft :
+-- SELECT DISTINCT name AS thief
+-- FROM people
+--     JOIN phone_calls ON phone_calls.caller = people.phone_number
+--     JOIN bakery_security_logs ON bakery_security_logs.license_plate = people.license_plate
+--     JOIN passengers ON passengers.passport_number = people.passport_number
+--     JOIN bank_accounts ON bank_accounts.person_id = people.id
+--     WHERE bakery_security_logs.license_plate IN (
+--         SELECT bakery_security_logs.license_plate
+--         FROM bakery_security_logs
+--         WHERE hour = 10
+--         AND minute BETWEEN 15 AND 25
+--         AND day = 28
+--         AND month = 7
+--         AND year = 2021
+--         AND activity = 'exit'
+--     )
+--     AND phone_calls.caller IN (
+--         SELECT phone_calls.caller
+--         FROM phone_calls
+--         WHERE duration < 60
+--         AND month = 7
+--         AND day = 28
+--     )
+--     AND people.id IN (
+--         SELECT bank_accounts.person_id
+--         FROM bank_accounts
+--         JOIN atm_transactions ON atm_transactions.account_number = bank_accounts.account_number
+--         WHERE bank_accounts.account_number IN (
+--             SELECT atm_transactions.account_number
+--             FROM atm_transactions
+--             WHERE year = 2021
+--             AND month = 7
+--             AND day = 28
+--             AND atm_location = 'Leggett Street'
+--         )
+--     )
+--     AND people.passport_number IN (
+--         SELECT passengers.passport_number
+--         FROM passengers
+--             JOIN flights ON flights.id = passengers.flight_id
+--             WHERE passengers.flight_id = (
+--                 SELECT flights.id
+--                 FROM flights
+--                 WHERE year = 2021
+--                 AND day = 29
+--                 AND month = 7
+--                 ORDER BY hour, minute
+--             )
+--     );
+
+-- to know where the thief escaped to:
+-- SELECT city
+-- FROM airports
+-- WHERE id = (
+--     SELECT flights.destination_airport_id
+--     FROM flights
+--     WHERE id = (
+--         SELECT passengers.flight_id
+--         FROM passengers
+--         WHERE passport_number = (
+--             SELECT people.passport_number
+--             FROM people
+--                 JOIN phone_calls ON phone_calls.caller = people.phone_number
+--                 JOIN bakery_security_logs ON bakery_security_logs.license_plate = people.license_plate
+--                 JOIN passengers ON passengers.passport_number = people.passport_number
+--                 JOIN bank_accounts ON bank_accounts.person_id = people.id
+--                 WHERE bakery_security_logs.license_plate IN (
+--                     SELECT bakery_security_logs.license_plate
+--                     FROM bakery_security_logs
+--                     WHERE hour = 10
+--                     AND minute BETWEEN 15 AND 25
+--                     AND day = 28
+--                     AND month = 7
+--                     AND year = 2021
+--                     AND activity = 'exit'
+--                 )
+--                 AND phone_calls.caller IN (
+--                     SELECT phone_calls.caller
+--                     FROM phone_calls
+--                     WHERE duration < 60
+--                     AND month = 7
+--                     AND day = 28
+--                 )
+--                 AND people.id IN (
+--                     SELECT bank_accounts.person_id
+--                     FROM bank_accounts
+--                     JOIN atm_transactions ON atm_transactions.account_number = bank_accounts.account_number
+--                     WHERE bank_accounts.account_number IN (
+--                         SELECT atm_transactions.account_number
+--                         FROM atm_transactions
+--                         WHERE year = 2021
+--                         AND month = 7
+--                         AND day = 28
+--                         AND atm_location = 'Leggett Street'
+--                     )
+--                 )
+--                 AND people.passport_number IN (
+--                     SELECT passengers.passport_number
+--                     FROM passengers
+--                         JOIN flights ON flights.id = passengers.flight_id
+--                         WHERE passengers.flight_id = (
+--                             SELECT flights.id
+--                             FROM flights
+--                             WHERE year = 2021
+--                             AND day = 29
+--                             AND month = 7
+--                             ORDER BY hour, minute
+--                         )
+--                 )
+--             )
+--         )
+--     );
+
+-- to know who where the accomplice i need to see the receiver from the phone calls of the suspect:
+-- SELECT DISTINCT name AS Accomplice
+-- FROM people
+-- WHERE people.phone_number = (
+--     SELECT phone_calls.receiver
+--     FROM phone_calls
+--     WHERE phone_calls.caller = (
+--         SELECT people.phone_number
+--         FROM people
+--             JOIN phone_calls ON phone_calls.caller = people.phone_number
+--             JOIN bakery_security_logs ON bakery_security_logs.license_plate = people.license_plate
+--             JOIN passengers ON passengers.passport_number = people.passport_number
+--             JOIN bank_accounts ON bank_accounts.person_id = people.id
+--             WHERE bakery_security_logs.license_plate IN (
+--                 SELECT bakery_security_logs.license_plate
+--                 FROM bakery_security_logs
+--                 WHERE hour = 10
+--                 AND minute BETWEEN 15 AND 25
+--                 AND day = 28
+--                 AND month = 7
+--                 AND year = 2021
+--                 AND activity = 'exit'
+--             )
+--             AND phone_calls.caller IN (
+--                 SELECT phone_calls.caller
+--                 FROM phone_calls
+--                 WHERE duration < 60
+--                 AND month = 7
+--                 AND day = 28
+--             )
+--             AND people.id IN (
+--                 SELECT bank_accounts.person_id
+--                 FROM bank_accounts
+--                 JOIN atm_transactions ON atm_transactions.account_number = bank_accounts.account_number
+--                 WHERE bank_accounts.account_number IN (
+--                     SELECT atm_transactions.account_number
+--                     FROM atm_transactions
+--                     WHERE year = 2021
+--                     AND month = 7
+--                     AND day = 28
+--                     AND atm_location = 'Leggett Street'
+--                 )
+--             )
+--             AND people.passport_number IN (
+--                 SELECT passengers.passport_number
+--                 FROM passengers
+--                     JOIN flights ON flights.id = passengers.flight_id
+--                     WHERE passengers.flight_id = (
+--                         SELECT flights.id
+--                         FROM flights
+--                         WHERE year = 2021
+--                         AND day = 29
+--                         AND month = 7
+--                         ORDER BY hour, minute
+--                     )
+--             )
+--     )
+--     AND year = 2021
+--     AND day = 28
+--     AND month = 7
+--     AND duration < 60
+-- );
